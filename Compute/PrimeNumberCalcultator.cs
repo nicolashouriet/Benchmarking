@@ -7,8 +7,8 @@ public class PrimeNumberCalcultator
     public List<int> ComputePrimesWithSieveOfEratosthenes(int upperBound)
     {
         List<int> primeNumbers = new();
-        bool[] A = new bool[upperBound];
-        for (int i = 0; i < A.Length - 1; i++)
+        bool[] A = new bool[upperBound + 1];
+        for (int i = 2; i < A.Length - 1; i++)
         {
             A[i] = true;
         }
@@ -18,14 +18,14 @@ public class PrimeNumberCalcultator
             if (A[i])
             {
                 int j = i * i;
-                do
+                while (j <= upperBound)
                 {
                     A[j] = false;
                     j += i;
-                } while (j <= upperBound);
+                }
             }
         }
-        
+
         for (int i = 0; i < A.Length - 1; i++)
         {
             if (A[i])
@@ -41,15 +41,20 @@ public class PrimeNumberCalcultator
     {
         int k = (int)Math.Round((double)(upperBound - 1) / 2, MidpointRounding.ToZero);
         List<int> primeNumbers = new();
-        bool[] A = new bool[k];
+        bool[] A = new bool[k + 1];
+        for (int i = 0; i < A.Length - 1; i++)
+        {
+            A[i] = true;
+        }
+
         for (int i = 1; i < Math.Sqrt(k); i++)
         {
             int j = i;
-            do
+            while (i + j + 2 * i * j < k)
             {
                 A[i + j + 2 * i * j] = false;
                 j++;
-            } while (i + j + 2 * i * j <= k);
+            }
         }
 
         for (int i = 0; i < A.Length - 1; i++)
@@ -68,11 +73,6 @@ public class PrimeNumberCalcultator
         int[] S = new[] {1, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 49, 53, 59};
         bool[] A = new bool[upperBound];
         List<int> primeNumbers = new();
-        
-        for (int i = 0; i < A.Length - 1; i++)
-        {
-            A[i] = true;
-        }
 
         int[] loop1ValidRemainders = new[] {1, 13, 17, 29, 37, 41, 49, 53};
         for (int x = 1; x < Math.Sqrt(upperBound); x++)

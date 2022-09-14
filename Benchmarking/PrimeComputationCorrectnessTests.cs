@@ -9,7 +9,7 @@ public class PrimeComputationCorrectnessTests
     [InlineData(100_000)]
     public void PrimeComputationAlgorithmsAreCorrectlyImplemented(int upperBound)
     {
-        List<int> correctPrimesUpToX = File.ReadLines("../primesUpTo100_000.txt").Select(l => int.Parse(l)).ToList();
+        List<int> correctPrimesUpToX = File.ReadLines(Path.Join("..", "..", "../primesUpTo100_000.txt")).Select(l => int.Parse(l)).ToList();
         Assert.True(IsListOfReturnedPrimesWithEratostheneCorrectUpTo(upperBound, correctPrimesUpToX));
         Assert.True(IsListOfReturnedPrimesWithSundaramCorrectUpTo(upperBound, correctPrimesUpToX));
         Assert.True(IsListOfReturnedPrimesWithAtkinCorrectUpTo(upperBound, correctPrimesUpToX));
@@ -22,7 +22,7 @@ public class PrimeComputationCorrectnessTests
         PrimeNumberCalcultator calc = new PrimeNumberCalcultator();
         List<int> actual = calc.ComputePrimesWithSieveOfEratosthenes(upperBound);
         
-        return primes.Except(actual).Any() && primes.Count == actual.Count;
+        return primes.Except(actual).Any() == false && primes.Count == actual.Count;
     }
     
     bool IsListOfReturnedPrimesWithSundaramCorrectUpTo(int upperBound, List<int> correctPrimesUpToX)
