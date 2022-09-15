@@ -10,9 +10,8 @@ namespace Benchmarking;
 public class PrimeComputationBenchmark
 {
     private PrimeNumberCalculator primeCalculator = new PrimeNumberCalculator();
-    private int upperBound;
 
-    [Params(1000, 10000)]
+    [Params(100_000)]
     public int N;
 
     [Benchmark]
