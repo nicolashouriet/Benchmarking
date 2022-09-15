@@ -1,4 +1,4 @@
-﻿namespace Compute;
+﻿namespace Compute.Lib;
 
 public class PiApproximator
 {
